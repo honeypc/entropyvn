@@ -29,3 +29,7 @@
 
 en:
   hello: "Hello world"
+  language: "English"
+  english: "English"
+  vietnamese: "Vietnamese"
+  change_language: "Change language"

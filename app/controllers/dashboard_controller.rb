@@ -5,7 +5,7 @@ class DashboardController < ApplicationController
 
   def index
     render json: {
-      user: current_user.as_json(except: [:encrypted_password, :reset_password_token, :reset_password_sent_at, :api_token]),
+      user: user_json(current_user),
       stats: {
         projects: 0,
         tasks: 0,

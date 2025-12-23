@@ -1,21 +1,27 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 /* Global styles */
-@layer base {
-  body {
-    @apply bg-gray-50 text-gray-900;
-  }
+body {
+  background-color: #f9fafb;
+  color: #111827;
 }
 
 /* Custom component styles */
-@layer components {
-  .btn-primary {
-    @apply px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors;
-  }
+.btn-primary {
+  padding: 0.5rem 1rem;
+  background-color: #2563eb;
+  color: white;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+}
 
-  .card {
-    @apply bg-white rounded-lg shadow-md p-6;
-  }
+.btn-primary:hover {
+  background-color: #1d4ed8;
+}
+
+.card {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  padding: 1.5rem;
 }

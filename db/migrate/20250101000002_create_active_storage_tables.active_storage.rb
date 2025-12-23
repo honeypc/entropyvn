@@ -2,7 +2,7 @@
 class CreateActiveStorageTables < ActiveRecord::Migration[7.2]
   def change
     # Use Active Storage's existing table definition
-    create_table :active_storage_blobs do |t|
+    create_table :active_storage_blobs, if_not_exists: true do |t|
       t.string   :key,          null: false
       t.string   :filename,     null: false
       t.string   :content_type
@@ -16,11 +16,10 @@ class CreateActiveStorageTables < ActiveRecord::Migration[7.2]
       else
         t.datetime :created_at, null: false
       end
-
-      t.index [ :key ], unique: true
     end
+    add_index :active_storage_blobs, [ :key ], unique: true, if_not_exists: true
 
-    create_table :active_storage_attachments do |t|
+    create_table :active_storage_attachments, if_not_exists: true do |t|
       t.string     :name,     null: false
       t.references :record,   null: false, polymorphic: true, index: false
       t.references :blob,     null: false
@@ -30,12 +29,13 @@ class CreateActiveStorageTables < ActiveRecord::Migration[7.2]
       else
         t.datetime :created_at, null: false
       end
-
-      t.index [ :record_type, :record_id, :name, :blob_id ], name: :index_active_storage_attachments_uniqueness, unique: true
-      t.index [ :blob_id ], name: :index_active_storage_attachments_on_blob_id
     end
+    add_index :active_storage_attachments, [ :record_type, :record_id, :name, :blob_id ],
+      name: :index_active_storage_attachments_uniqueness, unique: true, if_not_exists: true
+    add_index :active_storage_attachments, [ :blob_id ],
+      name: :index_active_storage_attachments_on_blob_id, if_not_exists: true
 
-    create_table :active_storage_variant_records do |t|
+    create_table :active_storage_variant_records, if_not_exists: true do |t|
       t.belongs_to :blob, null: false
       t.string :variation_digest, null: false
 
@@ -44,8 +44,8 @@ class CreateActiveStorageTables < ActiveRecord::Migration[7.2]
       else
         t.datetime :created_at, null: false
       end
-
-      t.index [ :blob_id, :variation_digest ], name: :index_active_storage_variant_records_uniqueness, unique: true
     end
+    add_index :active_storage_variant_records, [ :blob_id, :variation_digest ],
+      name: :index_active_storage_variant_records_uniqueness, unique: true, if_not_exists: true
   end
 end

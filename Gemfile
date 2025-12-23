@@ -23,8 +23,14 @@ gem "stimulus-rails"
 gem "tailwindcss-rails"
 # Flexible authentication solution for Rails [https://github.com/heartcombo/devise]
 gem "devise", "~> 4.9"
+# Authorization library for Rails [https://github.com/varvet/pundit]
+gem "pundit", "~> 2.5"
+# Admin interface for Rails [https://github.com/thoughtbot/administrate]
+gem "administrate"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
+# Multi-language support for models [https://github.com/globalize/globalize]
+gem "globalize", "~> 7.0"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"

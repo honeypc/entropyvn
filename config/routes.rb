@@ -24,6 +24,9 @@ Rails.application.routes.draw do
   # Public root
   root 'home#index'
 
+  # Locale switching
+  get 'locale/:locale', to: 'application#switch_locale', as: :switch_locale
+
   # Settings routes (for React components)
   namespace :settings do
     resource :profile, only: [:show, :update]
@@ -35,6 +38,36 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :dashboard, only: [:index]
+    end
+  end
+
+  # Admin routes (admin only access)
+  namespace :admin do
+    authenticate :user, ->(u) { u&.admin? } do
+      root to: "dashboard#index"
+
+      # Administrate dashboard
+      resources :users, only: [:index, :show, :edit, :update, :new, :create, :destroy]
+      resources :roles, only: [:index, :show, :edit, :update, :new, :create, :destroy]
+      resources :permissions, only: [:index, :show, :edit, :update, :new, :create, :destroy]
+
+      # Custom role management routes
+      resources :roles do
+        member do
+          post :add_permission
+          delete :remove_permission
+        end
+      end
+
+      # Custom user management routes
+      resources :users do
+        member do
+          post :assign_role
+          delete :remove_role
+          post :grant_permission
+          delete :revoke_permission
+        end
+      end
     end
   end
 end

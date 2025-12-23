@@ -48,7 +48,7 @@ const initializeReactComponents = () => {
     }
 
     // Dynamically import and mount the React component
-    import(`../components/features/${componentName}/${componentName}`)
+    import(`../components/features/${componentName}/${componentName}.tsx`)
       .then((module) => {
         const Component: ReactComponentType = module.default || module[componentName]
 

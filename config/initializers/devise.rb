@@ -71,7 +71,7 @@ Devise.setup do |config|
   # config.http_authenticatable = false
 
   # Configure if email is required for authentication.
-  config.require_authentication_on_email_change = true
+  # config.require_authentication_on_email_change = true
 
   # If HTTP authentication is enabled, configure the realm used.
   # config.http_authentication_realm = "Application"

@@ -1,0 +1,251 @@
+@import "tailwindcss";
+
+@layer base {
+  .admin-body {
+    @apply bg-slate-50 text-slate-900 antialiased;
+  }
+}
+
+@layer components {
+  .app-container {
+    @apply min-h-screen grid grid-cols-[240px_1fr];
+  }
+
+  .main-content {
+    @apply p-6;
+  }
+
+  .main-content__header {
+    @apply flex flex-wrap items-center justify-between gap-4 mb-6;
+  }
+
+  .main-content__page-title {
+    @apply text-2xl font-semibold text-slate-900;
+  }
+
+  .main-content__body {
+    @apply bg-white rounded-xl border border-slate-200 shadow-sm;
+  }
+
+  .main-content__body--flush {
+    @apply p-4;
+  }
+
+  .navigation {
+    @apply bg-white border-r border-slate-200 p-4 space-y-2;
+  }
+
+  .navigation__link {
+    @apply block rounded-md px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900;
+  }
+
+  .navigation__link--active {
+    @apply bg-slate-900 text-white;
+  }
+
+  .button {
+    @apply inline-flex items-center justify-center rounded-md px-3.5 py-2 text-sm font-semibold bg-slate-900 text-white hover:bg-slate-800;
+  }
+
+  .button--alt {
+    @apply bg-white text-slate-700 border border-slate-300 hover:bg-slate-50;
+  }
+
+  .button--nav {
+    @apply w-full justify-start;
+  }
+
+  .button--danger {
+    @apply bg-red-600 hover:bg-red-500;
+  }
+
+  .button--tooltip {
+    @apply inline-flex items-center justify-center rounded-md border border-slate-200 bg-white p-2 text-slate-600 hover:bg-slate-100;
+  }
+
+  .search {
+    @apply relative flex items-center gap-2;
+  }
+
+  .search__label {
+    @apply sr-only;
+  }
+
+  .search__input {
+    @apply w-64 rounded-md border border-slate-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-900/10;
+  }
+
+  .search__clear-link {
+    @apply text-slate-400 hover:text-slate-600;
+  }
+
+  .search__tooltip-popover {
+    @apply rounded-md border border-slate-200 bg-white p-3 text-sm shadow-lg;
+  }
+
+  .flashes {
+    @apply mb-4 space-y-2;
+  }
+
+  .flash {
+    @apply rounded-md border px-4 py-3 text-sm font-medium;
+  }
+
+  .flash-notice {
+    @apply border-emerald-200 bg-emerald-50 text-emerald-800;
+  }
+
+  .flash-alert,
+  .flash-error {
+    @apply border-red-200 bg-red-50 text-red-700;
+  }
+
+  table {
+    @apply w-full border-separate border-spacing-0;
+  }
+
+  thead th {
+    @apply bg-slate-50 px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-600 border-b border-slate-200;
+  }
+
+  tbody td {
+    @apply px-4 py-3 text-sm text-slate-700 border-b border-slate-100;
+  }
+
+  tbody tr {
+    @apply hover:bg-slate-50;
+  }
+
+  .cell-label__sort-indicator svg {
+    @apply inline-block h-3 w-3;
+  }
+
+  .action-show {
+    @apply text-slate-900 hover:text-slate-700;
+  }
+
+  .action-edit {
+    @apply text-amber-600 hover:text-amber-700;
+  }
+
+  .link--danger {
+    @apply text-red-600 hover:text-red-700;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+  .cell-label--action-button {
+    @apply text-right;
+  }
+
+  .form {
+    @apply space-y-6;
+  }
+
+  .field-unit {
+    @apply mb-4;
+  }
+
+  .field-unit__hint {
+    @apply mt-1 text-xs text-slate-500;
+  }
+
+  .form-actions {
+    @apply pt-2;
+  }
+
+  .form-actions input {
+    @apply inline-flex items-center rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800;
+  }
+
+  #error_explanation {
+    @apply rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700;
+  }
+
+  #error_explanation ul {
+    @apply mt-2 list-disc pl-5;
+  }
+
+  .attribute-label {
+    @apply text-xs uppercase tracking-wide text-slate-500;
+  }
+
+  .attribute-data {
+    @apply mb-4 text-sm text-slate-800;
+  }
+
+  dl {
+    @apply grid gap-2;
+  }
+
+  fieldset {
+    @apply border border-slate-200 rounded-lg p-4;
+  }
+
+  fieldset legend {
+    @apply px-2 text-sm font-semibold text-slate-700;
+  }
+
+  .pagination {
+    @apply mt-4 flex items-center gap-2;
+  }
+
+  .pagination a,
+  .pagination span {
+    @apply inline-flex items-center rounded-md border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700;
+  }
+
+  .pagination .current {
+    @apply border-slate-900 bg-slate-900 text-white;
+  }
+
+  .dashboard {
+    @apply space-y-6;
+  }
+
+  .dashboard__header {
+    @apply flex items-center justify-between;
+  }
+
+  .dashboard__stats {
+    @apply grid gap-4 md:grid-cols-3;
+  }
+
+  .dashboard__stat {
+    @apply rounded-xl border border-slate-200 bg-white p-4 shadow-sm;
+  }
+
+  .dashboard__recent {
+    @apply grid gap-4 md:grid-cols-2;
+  }
+
+  .dashboard__recent ul {
+    @apply mt-2 space-y-2;
+  }
+
+  .dashboard__recent a {
+    @apply text-slate-700 hover:text-slate-900;
+  }
+
+  .admin-toast {
+    @apply fixed bottom-5 right-5 rounded-lg px-5 py-3 text-sm font-medium text-white shadow-lg translate-y-24 opacity-0 transition-all;
+    z-index: 9999;
+  }
+
+  .admin-toast--visible {
+    @apply translate-y-0 opacity-100;
+  }
+
+  .admin-toast--success {
+    @apply bg-emerald-500;
+  }
+
+  .admin-toast--error {
+    @apply bg-red-500;
+  }
+
+  .admin-toast--info {
+    @apply bg-blue-500;
+  }
+}

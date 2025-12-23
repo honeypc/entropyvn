@@ -6,13 +6,13 @@ class Settings::ProfileController < ApplicationController
 
   # GET /settings/profile
   def show
-    render json: { user: user_json }
+    render json: { user: user_json(@user, include_api_token: true) }
   end
 
   # PUT/PATCH /settings/profile
   def update
     if @user.update(user_params)
-      render json: { user: user_json }
+      render json: { user: user_json(@user, include_api_token: true) }
     else
       render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
     end
@@ -28,10 +28,4 @@ class Settings::ProfileController < ApplicationController
     params.require(:user).permit(:name, :email, :avatar)
   end
 
-  def user_json
-    @user.as_json(
-      except: [:encrypted_password, :reset_password_token, :reset_password_sent_at],
-      methods: [:avatar_url]
-    )
-  end
 end

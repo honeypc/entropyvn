@@ -5,23 +5,19 @@ class Settings::AccountController < ApplicationController
 
   # GET /settings/account
   def show
-    render json: { user: user_json }
+    render json: { user: user_json(current_user) }
   end
 
   # PUT/PATCH /settings/account
   def update
     if update_user
-      render json: { user: user_json, message: "Password updated successfully" }
+      render json: { user: user_json(current_user), message: "Password updated successfully" }
     else
       render json: { errors: current_user.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
   private
-
-  def user_json
-    current_user.as_json(except: [:encrypted_password, :reset_password_token, :reset_password_sent_at, :api_token])
-  end
 
   def update_user
     # Only allow password updates through this controller
