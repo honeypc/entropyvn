@@ -9,6 +9,32 @@ Rails.application.routes.draw do
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  # Devise routes for authentication
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions',
+    passwords: 'users/passwords'
+  }
+
+  # Authenticated routes
+  authenticated :user do
+    root 'dashboard#index', as: :authenticated_root
+  end
+
+  # Public root
+  root 'home#index'
+
+  # Settings routes (for React components)
+  namespace :settings do
+    resource :profile, only: [:show, :update]
+    resource :account, only: [:show, :update]
+    resource :api_tokens, only: [:show, :create, :destroy]
+  end
+
+  # API endpoints
+  namespace :api do
+    namespace :v1 do
+      resources :dashboard, only: [:index]
+    end
+  end
 end

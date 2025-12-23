@@ -6,7 +6,9 @@
 export interface User {
   id: number
   email: string
-  name?: string
+  name: string
+  avatar?: string
+  api_token?: string
   created_at: string
   updated_at: string
 }
