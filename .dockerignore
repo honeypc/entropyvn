@@ -36,6 +36,18 @@
 !/app/assets/builds/.keep
 /public/assets
 
+# Ignore frontend source (Vite builds to public/vite-build)
+/app/frontend/
+
+# Ignore TypeScript and Vite config files
+/tsconfig.json
+/tsconfig.node.json
+/vite.config.ts
+/tailwind.config.js
+/postcss.config.js
+/package.json
+/package-lock.json
+
 # Ignore CI service files.
 /.github
 

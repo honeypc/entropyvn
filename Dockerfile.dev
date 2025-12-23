@@ -17,11 +17,16 @@ RUN apt-get update -qq && \
         libjemalloc2 \
         libpq-dev \
         libvips \
-        postgresql-client \
-        nodejs \
-        yarn && \
-    ln -s /usr/lib/$(uname -m)-linux-gnu/libjemalloc.so.2 /usr/local/lib/libjemalloc.so && \
+        postgresql-client && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
+
+# Install Node.js 20.x (using NodeSource for latest LTS)
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install Yarn (optional, for compatibility)
+RUN npm install -g yarn
 
 # Set development environment
 ENV RAILS_ENV="development" \
@@ -36,6 +41,10 @@ WORKDIR /rails
 # Install gems
 COPY Gemfile Gemfile.lock ./
 RUN bundle install
+
+# Install npm dependencies
+COPY package.json package-lock.json* ./
+RUN npm ci
 
 # Copy application code
 COPY . .
