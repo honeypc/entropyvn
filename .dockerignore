@@ -11,8 +11,10 @@
 /.env*
 
 # Ignore all default key files.
-/config/master.key
 /config/credentials/*.key
+
+# But keep the master.key for development
+!/config/master.key
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -37,16 +39,20 @@
 /public/assets
 
 # Ignore frontend source (Vite builds to public/vite-build)
-/app/frontend/
+# Note: Don't ignore the entire /app/frontend/ directory as we need it for development
+# /app/frontend/
 
-# Ignore TypeScript and Vite config files
-/tsconfig.json
-/tsconfig.node.json
-/vite.config.ts
-/tailwind.config.js
-/postcss.config.js
-/package.json
-/package-lock.json
+# Ignore node_modules but keep package files for Vite development
+/node_modules/
+
+# Don't ignore these config files - they're needed for development
+# /tsconfig.json
+# /tsconfig.node.json
+# /vite.config.ts
+# /tailwind.config.js
+# /postcss.config.js
+# /package.json
+# /package-lock.json
 
 # Ignore CI service files.
 /.github

@@ -16,6 +16,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         application: 'app/frontend/entrypoints/application.ts',
+        admin: 'app/frontend/entrypoints/admin.ts',
       },
       output: {
         entryFileNames: 'assets/[name].[hash].js',
@@ -52,15 +53,8 @@ export default defineConfig({
     }
   },
 
-  // CSS configuration for Tailwind
-  css: {
-    postcss: {
-      plugins: [
-        require('tailwindcss'),
-        require('autoprefixer')
-      ]
-    }
-  },
+  // CSS configuration - PostCSS is configured via postcss.config.js
+  // Vite automatically uses postcss.config.js
 
   // Optimize dependencies
   optimizeDeps: {

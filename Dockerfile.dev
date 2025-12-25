@@ -14,9 +14,9 @@ RUN apt-get update -qq && \
         build-essential \
         curl \
         git \
-        libjemalloc2 \
         libpq-dev \
         libvips \
+        libyaml-dev \
         postgresql-client && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
@@ -31,26 +31,23 @@ RUN npm install -g yarn
 # Set development environment
 ENV RAILS_ENV="development" \
     BUNDLE_PATH="/usr/local/bundle" \
-    LD_PRELOAD="/usr/local/lib/libjemalloc.so" \
     RAILS_SERVE_STATIC_FILES="true" \
     RAILS_LOG_TO_STDOUT="true"
 
 # Rails app lives here
 WORKDIR /rails
 
-# Install gems
+# Install gems (will be installed at runtime to avoid platform issues)
 COPY Gemfile Gemfile.lock ./
-RUN bundle install
 
 # Install npm dependencies
-COPY package.json package-lock.json* ./
-RUN npm ci
+COPY package.json ./
 
 # Copy application code
 COPY . .
 
-# Precompile bootsnap for faster boot times
-RUN bundle exec bootsnap precompile app/ lib/
+# Run setup on first start - this will be done in the container
+# Precompile bootsnap for faster boot times (done at runtime)
 
 # Create necessary directories
 RUN mkdir -p tmp/pids tmp/sockets log storage

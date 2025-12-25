@@ -1,0 +1,38 @@
+<%#
+# Enhanced Admin Application Layout with Radix UI
+
+This view template extends Administrate's default layout
+with enhanced React components and Radix UI styles.
+%>
+
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+<head>
+  <meta charset="utf-8">
+  <meta name="ROBOTS" content="NOODP">
+  <meta name="viewport" content="initial-scale=1">
+  <title>
+    <%= content_for(:title) %> - <%= application_title %>
+  </title>
+  <%= render "stylesheet" %>
+  <!-- Admin-specific styles with Radix UI -->
+  <%= vite_stylesheet_tag 'admin' %>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag if defined?(csp_meta_tag) %>
+  <%= render "javascript" %>
+  <!-- Admin JavaScript with Radix UI components -->
+  <%= vite_javascript_tag 'admin' %>
+</head>
+<body class="admin-body">
+  <%= render "icons" %>
+
+  <div class="app-container">
+    <%= render "navigation" -%>
+
+    <main class="main-content">
+      <%= render "flashes" -%>
+      <%= yield %>
+    </main>
+  </div>
+</body>
+</html>
